@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile - {{ patient.medilink_id }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f7f8;
+        }
+
+        .navbar {
+            height: 8vh;
+            display: flex;
+            align-items: center;
+            background-color: rgb(107, 201, 208);
+            padding: 0 40px;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .main-container {
+            display: flex;
+            padding: 30px;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Left Side: Patient Info & Graph */
+        .info-panel {
+            width: 30vw;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Right Side: Medical History & Reports */
+        .records-panel {
+            width: 55vw;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid rgb(189, 215, 228);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 4px 4px 10px gainsboro;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: rgb(65, 137, 137);
+            font-size: 22px;
+            border-bottom: 2px solid rgb(107, 201, 208);
+            padding-bottom: 10px;
+        }
+
+        .patient-header {
+            text-align: center;
+            background-color: rgb(179, 231, 235);
+        }
+
+        .patient-header h1 {
+            margin: 5px 0;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .entry-item {
+            background: #f9f9f9;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid rgb(107, 201, 208);
+        }
+
+        .entry-item strong {
+            color: #444;
+        }
+
+        .report-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            transition: 0.3s;
+        }
+
+        .report-link:hover {
+            background: rgb(230, 247, 248);
+            border-color: rgb(107, 201, 208);
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: rgb(107, 201, 208);
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .btn-back:hover {
+            background-color: rgb(65, 137, 137);
+        }
+
+        .graph-img {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>MediLink | Doctor's Review Portal</h2>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="info-panel">
+            <div class="card patient-header">
+                <p>PATIENT PROFILE</p>
+                <h1>{{ patient.name.upper() }}</h1>
+                <p><strong>ID:</strong> {{ patient.medilink_id }}</p>
+            </div>
+
+            <div class="card">
+                <h2>Health Trends</h2>
+                {% if graph %}
+                    <img src="data:image/png;base64,{{ graph }}" class="graph-img" alt="Vitals Trend">
+                {% else %}
+                    <p style="color: gray; text-align: center;">Insufficient data for health analytics graph.</p>
+                {% endif %}
+            </div>
+
+            <a href="{{ url_for('doctor_dashboard') }}" class="btn-back">← Back to Dashboard</a>
+        </div>
+
+        <div class="records-panel">
+            
+            <div class="card">
+                <h2>Clinical History</h2>
+                {% for entry in history %}
+                <div class="entry-item">
+                    <div style="display: flex; justify-content: space-between;">
+                        <strong>Date: {{ entry.date }}</strong>
+                        <span style="color: rgb(65, 137, 137); font-weight: bold;">{{ entry.diagnosis }}</span>
+                    </div>
+                    <p style="margin: 10px 0;"><strong>Symptoms:</strong> {{ entry.symptoms }}</p>
+                    <p style="margin: 5px 0; font-size: 0.9em; color: #666;"><strong>Vitals:</strong> {{ entry.vitals }}</p>
+                    <div style="background: white; padding: 10px; border-radius: 4px; margin-top: 10px; border: 1px dashed #ccc;">
+                        <strong>Prescription:</strong><br>{{ entry.prescription }}
+                    </div>
+                </div>
+                {% else %}
+                <p>No previous medical records available for this patient.</p>
+                {% endfor %}
+            </div>
+
+            <div class="card">
+                <h2>Uploaded Reports (PDF/Images/Excel)</h2>
+                {% for report in reports %}
+                <a href="{{ url_for('view_file', filename=report.file_name) }}" target="_blank" class="report-link">
+                    <span>{{ report.description }}</span>
+                    <span style="color: rgb(107, 201, 208); font-weight: bold;">View File →</span>
+                </a>
+                {% else %}
+                <p>No documents uploaded by the patient.</p>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doctor-login.html</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: azure;
+    }
+
+    .doctor-login {
+
+        height: 570px;
+        width: 700px;
+
+        display: flex;
+
+        box-shadow: 4px 4px 4px rgb(174, 207, 210), inset 5px 5px 4px rgb(68, 123, 149);
+        border-radius: 10px;
+
+    }
+
+    .box1 {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+
+    .box2 {
+        width: 50%;
+
+        padding-left: 10px;
+        padding-top: 120px;
+
+
+
+    }
+
+
+
+    #password3 {
+        position: relative;
+
+    }
+
+    #password3 img {
+        position: absolute;
+        right: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .form-group input {
+        padding: 10px 0px 10px 12px;
+        font-size: 15px;
+        border-radius: 4px;
+        border: none;
+        box-shadow: 2px 2px 4px gray;
+        width: 90%;
+
+
+
+    }
+
+    .doctor img {
+        width: 80%;
+       
+        height: 350px;
+        object-fit: cover;
+        border-bottom-right-radius: 30px;
+        border-top-left-radius: 30px;
+        opacity: 100%;
+
+    }
+
+    .box1 {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 4px 5px 5px rgb(179, 172, 172);
+    }
+
+    .box1::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../images/d1.png') no-repeat center;
+        background-size: cover;
+        opacity: 0.3;
+        z-index: 0;
+    }
+
+
+
+
+    .doctor {
+        margin-top: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+
+
+    .doctor h2 {
+        font-size: 35px;
+        color: rgb(64, 113, 113);
+        font-style: oblique;
+        text-shadow: 2px 2px 2px gray;
+        font-weight: bold;
+    }
+
+    .doctor p {
+        margin-top: 2px;
+        font-size: 28px;
+        color: rgb(13, 123, 123);
+        text-shadow: -1px 2px 2px gray;
+        font-weight: bold;
+    }
+
+    .btn {
+        margin-top: 50px;
+        width: 90%;
+        padding: 10px;
+        background-color: rgb(14, 120, 128);
+
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+        border-radius: 6px;
+        border: none;
+        text-shadow: 2px 2px 2px black;
+    }
+
+    .btn:hover {
+        background: rgb(76, 176, 184);
+        cursor: pointer;
+        color: azure;
+        outline: none;
+    }
+
+    #Email3 input {
+        margin-bottom: 30px;
+        font-size: 14px;
+        color: black;
+
+    }
+
+    #password3 input {
+        font-size: 14px;
+        color: black
+    }
+
+    label {
+        font-size: 14px;
+        color: grey;
+    }
+
+    .btn:focus {
+        outline: none;
+        border: #738576;
+    }
+
+    input:focus {
+        outline: none;
+        border: #208434;
+    }
+
+    .box2 a {
+        font-size: 14px;
+        color: rgb(37, 36, 36);
+        margin-top: 5px;
+    }
+
+    .login-header {
+        display: flex;
+        align-items: center;
+        /* vertically center */
+        gap: 15px;
+        /* icon aur text ke beech space */
+        margin-bottom: 30px;
+    }
+
+    .login-header img {
+        width: 50px;
+        /* size control */
+        height: 50px;
+    }
+
+    .login-header span {
+        font-size: 30px;
+        font-weight: bold;
+        color: rgb(14, 120, 128);
+    }
+</style>
+
+<body>
+    <div class="doctor-login">
+        <div class="box1">
+
+
+
+
+            <div class="doctor">
+                <h2>Doctor Login</h2>
+                <p>Secure access to your <br> dashboard</p>
+                <img src="static\images\DLogin1.jpeg" alt="">
+            </div>
+
+        </div>
+        <div class="box2">
+            <div class="login-header">
+                <img src="static\images\DLogin2.jpeg" alt="">
+                <span>Login</span>
+            </div>
+            <form action="/doctor_login" name="form" onsubmit="return validateForm()" method="post">
+                <label for="Email3">Email ID</label>
+                <div class="form-group" id="Email3">
+
+                    <input type="email" name="eform" required>
+                    <div class="form-error"></div>
+
+                </div>
+                <label for="password3">Password</label>
+                <div class="form-group" id="password3">
+
+                    <input type="password" id="pass" name="pform" required>
+                    <img id="img" src="static\images\PLogin3.jpeg" alt="">
+                    <div class="form-error"></div>
+                </div>
+                <div><a href="forgot.html">Forgot password</a></div>
+                <button type="submit" class="btn">
+                    Login
+                </button>
+        </div>
+        </form>
+    </div>
+
+</body>
+<script>
+    function clearError() {
+        errors = document.getElementsByClassName("form-error")
+
+        for (let item of errors) {
+            item.innerHTML = "";
+        }
+    }
+    function seterror(id, error) {
+        let element = document.getElementById(id);
+        element.getElementsByClassName('form-error')[0].innerHTML = error;
+    }
+    function validateForm() {
+        let returnval = true;
+        clearError();
+        let email = document.forms['form']['eform'].value;
+        if (email.length > 30) {
+            seterror("Email3", "*Email must be less than 30 ");
+            returnval = false;
+        }
+        return returnval;
+    }
+</script>
+
+</html>

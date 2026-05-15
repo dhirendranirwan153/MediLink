@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>congratulations</title>
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Ubuntu', sans-serif;
+
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border: 35px solid rgb(201, 222, 230);
+        height: 500px;
+        width: 400px;
+        border-radius: 20px;
+
+
+
+    }
+
+    h1 {
+        color: rgb(9, 96, 103);
+    }
+
+    p {
+        color: grey;
+
+    }
+
+    h2 {
+        color: rgb(60, 62, 71);
+    }
+
+    .box {
+        padding-top: 50px;
+
+        animation: name duration timing-function delay iteration-count direction fill-mode;
+        /* name, duration, delay */
+        animation: h1 2s 1s;
+    }
+
+    button {
+        margin-top: 100px;
+        width: 80%;
+        border: none;
+        background-color: rgb(14, 120, 128);
+        padding: 10px 0px;
+        border-radius: 5px;
+        font-size: 20px;
+        color: aliceblue;
+
+    }
+
+    @keyframes h1 {
+        0% {
+            transform: rotateY(100deg);
+        }
+
+    }
+
+    button:hover {
+        background-color: rgb(58, 157, 164);
+
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Congratulations!!🎉</h1>
+            <p> You have successfully Registered.</p>
+            <h2>Your Unique MediLink Id is. </h2>
+            <h2> {{ user_id }} </h2>
+        </div>
+        <button onclick="location.href ='patient_dashboard'"> Go to Dashboard</button>
+    </div>
+</body>
+
+</html>

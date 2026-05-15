@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doctor.dashboard</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .container {
+        height: 100vh;
+
+    }
+
+
+    .boxs {
+
+        display: grid;
+        grid-template-areas: "box1 box2  box2 box3"
+            "box1 box2   box2 box3"
+            "box4 box2  box2 box3"
+            "box5 box5    box5 box3"
+            "box5 box5   box5 box3"
+            "box5 box5   box5 box3"
+            "box5 box5   box5 box3"
+            "box5 box5   box5 box3"
+            "box5 box5   box5 box3"
+
+
+
+        ;
+        gap: 20px;
+        padding: 10px 10px 10px 80px;
+        height: 92vh;
+
+
+    }
+
+    .box {
+        border: 2px solid rgb(172, 167, 167);
+        border-radius: 5px;
+        box-shadow: 5px 4px 5px  rgb(223, 218, 218);
+
+    }
+    .navbar {
+        height: 8vh;
+
+        border: 2px solid rgb(189, 215, 228);
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(107, 201, 208);
+        padding-left: 40px;
+    }
+
+    .navbar img {
+        height: 70px;
+        width: 200px;
+    }
+
+    .navbar h2 {
+        margin-left: 50px;
+        color: aliceblue;
+    }
+
+    #box-1 {
+        grid-area: box1;
+        padding-left: 30px;
+font-size: 20px;
+        overflow: auto;
+
+    }
+
+    #box-2 {
+        grid-area: box2;
+        background-color: rgb(170, 249, 244);
+        text-align: center;
+        border: 2px solid rgb(106, 248, 246);
+        
+    }
+
+    #box-3 {
+        grid-area: box3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 20px;
+    }
+    #box-3 div{
+        background-color: rgb(182, 236, 236);
+        padding: 1px 5px ;
+        border-radius: 5px;
+        margin: 4px 0px;
+
+    }
+
+    #box-4 {
+        grid-area: box4;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    #box-5 {
+        grid-area: box5;
+        display: flex;
+        overflow: hidden;
+
+    }
+
+    #box-5 img {
+
+        height: 100%;
+        width: 50%;
+        object-fit: cover;
+    }
+
+
+    .greet {
+        display: flex;
+        gap: 50px;
+    }
+
+    .forms input {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(88, 211, 219);
+        font-size: 18px;
+        padding: 4px 0px 4px 3px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    input:focus {
+        outline: none;
+
+    }
+
+    .form h2 {
+        text-align: center;
+    }
+
+    .forms {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        align-items: center;
+
+        gap: 16px;
+        padding-left: 30px;
+        font-size: 16px;
+    }
+
+    .vitals {
+        display: flex;
+
+    }
+
+    .vitals input {
+        width: 63px;
+        margin: 0px 10px;
+
+
+    }
+
+    #p {
+        height: 40px;
+        background-color: rgb(159, 223, 227);
+        border: none;
+    }
+
+    button {
+        width: 430px;
+        padding: 5px 0px;
+        background-color: rgb(41, 137, 144)
+    }
+
+    .btn {
+        font-size: 15px;
+        color: black;
+        border-radius: 6px;
+        border: none;
+        font-weight: bold;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: rgb(25, 125, 133)
+    }
+   
+    #search{
+        background-image: url('../images/search.png') ;
+        background-repeat: no-repeat;
+         background-position: 12px center;  /* 12px to left and vertically center */
+   width: 80%;
+        padding: 7px 1px 7px 35px;
+        border: 2px solid gray;
+        border-radius: 4px;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <img src="static\images\PD-1.jpeg" alt="">
+            <h2>Doctor Dashboard </h2>
+
+        </div>
+        <div class="boxs">
+            <div class="box" id="box-1">
+                <div class="greet">
+                    <img src="static\images\DD-1.jpeg" alt="">
+                    <h2>Welcome, Dr. {{ doctor.name.split(' ')[0] }}</h2>
+                </div>
+                Specialization: <p>{{ profile.specialization }}</p>
+            </div>
+            <div class="box" id="box-2">
+                <h2>Access Patient Records</h2>
+                <form action="/search_patient" method="POST">
+                     <input type="text" id="search" name="patient_id" placeholder="Enter Patient ID (e.g. MLP-2026-XXXX)" required>
+                     <button type="submit" class="btn" style="width: 120px; height: 40px; margin-top: 10px;">Search</button>
+                </form>
+              
+                    
+                    
+               
+                <h1>ENTER PATIENT MEDILINK ID</h1>
+                <H2> (eg., MLP-2026-XXXX)</H2>
+            </div>
+            <div class="box-right">
+               <h2>Recent Patient</h2>
+               <h3>Quick List</h3>
+    
+               <div class="list-container">
+                   {% for entry in recent_patients %}
+                   <div class="patient-tag" style="margin-bottom: 10px;">
+                       <form action="/search_patient" method="POST" style="display:inline;">
+                            <input type="hidden" name="patient_id" value="{{ entry.patient_id }}">
+                            <button type="submit" style="background-color: rgb(107, 201, 208); border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%;">
+                                  ID: {{ entry.patient_id }}
+                            </button>
+                       </form>
+                   </div>
+                   {% else %}
+                   <p style="text-align: center; color: gray;">No recent entries.</p>
+                   {% endfor %}
+               </div>
+            </div>
+            <div class="box" id="box-4">
+                <p>YOUR MEDILNK ID :</p>
+                {{ doctor.medilink_id }}
+                
+            </div>
+            <div class="box" id="box-5">
+                <img src="static\images\DD-3.webp" alt="">
+                <form action="/add_entry" method="POST" class="form">
+                    <h2>ADD NEW CLINICAL ENTRY</h2>
+                    <div class="forms">
+                        Target Patient ID: <input type="text" name="p_id" placeholder="MLP-XXXX" required>
+
+                        Date <input type="date" name="entry_date">
+                        Symptoms <input type="text" name="symptoms">
+                        Diagnosis <input type="text" name="diagnosis">
+
+                        <label>Vitals (BP/Sugar/Weight)</label>
+                        <div class="vitals">
+                            <input type="text" name="bp" placeholder="BP">
+                            <input type="text" name="sugar" placeholder="Sugar">
+                            <input type="text" name="weight" placeholder="Weight">
+                        </div>
+                        Prescription <textarea name="prescription" id="p"></textarea>
+                        <button type="submit" class="btn"> SAVE ENTRY</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

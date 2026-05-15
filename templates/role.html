@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 200px;
+    }
+
+    .box {
+  
+        height: 250px;
+        width: 400px;
+        padding-top: 40px;
+        background: linear-gradient(135deg, #e2f2fb, #ffffff);
+        border-radius: 10px;
+        box-shadow: 2px 2px 3px gray;
+
+    }
+
+    h1 {
+        text-align: center;
+        color: rgb(13, 123, 123);
+        font-family: 'Ubuntu', sans-serif;
+        text-shadow: 2px 2px 4px  rgb(212, 185, 185);
+     
+  
+
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        gap: 40px;
+       
+    }
+
+    .btn button {
+        padding: 10px 20px;
+        border: 1px solid  rgb(13, 123, 123);
+        font-size: 20px;
+        font-weight: bold;
+         border-radius: 5px;
+         box-shadow: 2px 2px 2px rgb(13, 123, 123);
+         font-family: cursive;
+         background-color: white;
+    }
+    .btn button:hover{
+        background-color: rgb(246, 250, 250);
+        transform: scale(1.02);
+    }
+</style>
+
+<body>
+    <div class="box">
+        <h1> Select Your Role</h1>
+        <div class="btn">
+            <button onclick="location.href= 'doctor_register'">DOCTOR </button>
+            <button onclick="location.href = 'patient_register'"> PATIENT </button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient-login.html</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #d9f1ff, #ffffff);
+
+    }
+
+    .patient-login {
+        margin: 0;
+        height: 570px;
+        width: 700px;
+
+        transition: 0.3s;
+        display: flex;
+      
+        box-shadow: 4px 4px 6px rgb(174, 207, 210), inset 3px 3px 5px rgb(68, 123, 149);
+        border-radius: 8px;
+
+    }
+
+    .box1 {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+
+    .box2 {
+        width: 50%;
+
+        padding-left: 10px;
+        padding-top: 120px;
+
+
+
+    }
+
+
+
+    #password2 {
+        position: relative;
+
+    }
+
+    #password2 img {
+        position: absolute;
+        right: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    .form-group input {
+        padding: 10px 0px 10px 10px;
+        font-size: 17px;
+        border-radius: 4px;
+        border: none;
+        box-shadow: 2px 2px 4px gray;
+        width: 85%;
+
+
+
+    }
+
+    .patient img {
+        width: 80%;
+        /* pura box cover kare */
+        height: 350px;
+        object-fit: cover;
+        /* image stretch na ho */
+        border-bottom-right-radius: 30px;
+        border-top-left-radius: 30px;
+        opacity: 100%;
+
+    }
+
+    .box1 {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 4px 5px 5px rgb(179, 172, 172);
+    }
+
+    .box1::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../images/d1.png') no-repeat center;
+        background-size: cover;
+        opacity: 0.5;
+        z-index: 0;
+    }
+
+
+
+
+    .patient {
+        margin-top: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+
+
+    .patient h2 {
+        font-size: 35px;
+        color: rgb(64, 113, 113);
+        font-style: oblique;
+        text-shadow: 2px 2px 2px gray;
+        font-weight: bold;
+    }
+
+    .patient p {
+        margin-top: 2px;
+        font-size: 28px;
+        color: rgb(13, 123, 123);
+        text-shadow: -1px 2px 2px gray;
+        font-weight: bold;
+    }
+
+    .btn {
+        margin-top: 50px;
+        width: 90%;
+        padding: 10px;
+        background: linear-gradient(135deg, #5DADE2, #3498DB);
+        font-size: 18px;
+        color: white;
+        font-weight: bold;
+        border-radius: 6px;
+        border: none;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: rgb(71, 223, 234);
+        transform: scale(1.02);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, );
+        cursor: pointer;
+        color: azure;
+
+    }
+
+    #Email2 input {
+        margin-bottom: 30px;
+        font-size: 14px;
+        color: black;
+
+    }
+
+    #password2 input {
+        font-size: 14px;
+        color: black
+    }
+
+    .patient-login:hover {
+        transform: translateY(-5px);
+    }
+
+    label {
+        font-size: 14px;
+        color: grey;
+    }
+
+    .btn:focus {
+        outline: none;
+        border: #738576;
+    }
+
+    input:focus {
+        outline: none;
+        border: #208434;
+    }
+
+    /* .box2 a {
+        font-size: 14px;
+        color: rgb(37, 36, 36);
+        margin-top: 5px;
+    } */
+
+    .login-header {
+        display: flex;
+        align-items: center;
+
+        gap: 15px;
+
+        margin-bottom: 30px;
+    }
+
+    .login-header img {
+        width: 50px;
+
+        height: 50px;
+    }
+
+    .login-header span {
+        font-size: 30px;
+        font-weight: bold;
+        color: rgb(14, 120, 128);
+    }
+</style>
+
+<body>
+    <div class="patient-login">
+        <div class="box1">
+
+
+
+
+            <div class="patient">
+                <h2>Patient Login</h2>
+                <p>Secure access to your <br> dashboard</p>
+                <img src="static\images\PLogin1.jpeg" alt="">
+            </div>
+
+        </div>
+        <div class="box2">
+            <div class="login-header">
+                <img src="static\images\PLogin2.jpeg" alt="">
+                <span>Login</span>
+            </div>
+
+           <form action="/patient_login" method="POST">
+              <label for="Email2">Email ID</label>
+              <div class="form-group" id="Email2">
+                  <input type="email" name="eform" required>
+                  <div class="form-error"></div>
+              </div>
+
+             <label for="password2">Password</label>
+             <div class="form-group" id="password2">
+                <input type="password" id="pass" name="pform" required>
+                <img id="img" src="static\images\PLogin3.jpeg" alt="">
+                <div class="form-error"></div>
+             </div>
+
+             <div><a href="forgot_password">Forgot password</a></div>
+
+             <button type="submit" class="btn">
+                Login
+             </button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
